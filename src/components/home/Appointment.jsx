@@ -18,6 +18,8 @@ import {
   Notes,
 } from "@mui/icons-material";
 
+import { useMediaQuery } from "@mui/material";
+
 const availableSlots = [
   { id: 1, time: "09:00 AM" },
   { id: 2, time: "10:00 AM" },
@@ -54,6 +56,8 @@ const Apponitment = () => {
     // هنا ممكن تضيف كود عشان ترسل البيانات للسيرفر أو تتعامل معاها
     console.log("Form Data:", formData);
   };
+
+  const isMobile = useMediaQuery("(max-width:600px)");
 
   return (
     <section className="p-[24px] md:p-[70px] bg-[#f9f9f9]">
@@ -158,6 +162,13 @@ const Apponitment = () => {
                 shrink: true,
               }}
               required
+              InputProps={{
+                endAdornment: isMobile ? ( // Only display the icon if it's mobile
+                  <InputAdornment position="end">
+                    <Event />
+                  </InputAdornment>
+                ) : null,
+              }}
             />
           </Grid>
 
